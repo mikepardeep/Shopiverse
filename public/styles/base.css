@@ -11,7 +11,8 @@ html {
     --color-gray-500: rgb(37,34,31);
     --color-milkwhite-500: rgb(237, 237, 237);
     --color-turqoise-500: rgb(58, 72, 85);
-    
+    --color-royalblue-100: rgb(25, 34, 67);
+    --color-gold-200: rgb(224, 134, 0);
     --color-error-500: rgb(199,51,15);
     
     /* add spacing as variable and using it later */
@@ -31,7 +32,41 @@ html {
 }
 
 body {
-    background-color: var(--color-milkwhite-500);
-    color:var(--color-turqoise-500);
+    background-color: var(--color-royalblue-100);
+    color:var(--color-milkwhite-500);
     margin:0;
+}
+
+
+main {
+    width: 90%;
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+ul,
+ol {
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color:var(--color-gold-200);
+}
+
+.btn {
+    cursor: pointer;
+    font:inherit;
+    padding: var(--space-2) var(--space-6);
+    color: var(--color-gray-500);
+    border: 1px solid var(--color-gray-500);
+    border-radius:var(--border-radius-small);
+
+}
+
+.btn:hover,
+.btn:active {
+    background-color: var(--color-gold-200);
 }
