@@ -9,6 +9,8 @@ html {
 
     /* add colors as variable and using it later */
     --color-gray-500: rgb(37,34,31);
+    --color-milkwhite-500: rgb(237, 237, 237);
+    --color-turqoise-500: rgb(58, 72, 85);
     
     --color-error-500: rgb(199,51,15);
     
@@ -26,4 +28,10 @@ html {
     /* add shadow medium as variable and using it later */
     --shadow-medium: 0 2px 8px rgba(0,0,0,0.2);
 
+}
+
+body {
+    background-color: var(--color-milkwhite-500);
+    color:var(--color-turqoise-500);
+    margin:0;
 }
