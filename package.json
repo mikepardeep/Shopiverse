@@ -1,0 +1,23 @@
+{
+  "name": "E-Commerce-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikepardeep/Shopiverse-E-Commerce-Website.git"
+  },
+  "keywords": [],
+  "author": "Pardeep Mohan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikepardeep/Shopiverse-E-Commerce-Website/issues"
+  },
+  "homepage": "https://github.com/mikepardeep/Shopiverse-E-Commerce-Website#readme",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
