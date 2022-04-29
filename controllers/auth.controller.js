@@ -9,8 +9,6 @@ function getLogin(req,res){
     //..
 }
 
-
-
 //export object 
 module.exports = {
     getSignup: getSignup,

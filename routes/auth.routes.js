@@ -1,3 +1,4 @@
+//require the express package
 const express = require('express');
 
 //import auth controller
@@ -12,4 +13,5 @@ router.get('/signup', authController.getSignup)
 //get login router
 router.get('/login', authController.getLogin)
 
+//export the router available global
 module.exports = router;
