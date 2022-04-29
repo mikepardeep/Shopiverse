@@ -14,6 +14,9 @@ app.set('view engine', 'ejs');
     //location of the view folder
 app.set("views", path.join(__dirname, 'views'));
 
+//static file for public folder
+app.use(express.static('public'));
+
 
 //add a middleware for incoming request from routes
 app.use(authRoutes);
