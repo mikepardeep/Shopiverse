@@ -1,6 +1,5 @@
 //require the express package
 const express = require('express');
-const { signup } = require('../controllers/auth.controller');
 
 //import auth controller
 const authController = require('../controllers/auth.controller');

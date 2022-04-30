@@ -21,6 +21,8 @@ app.set("views", path.join(__dirname, 'views'));
 //static file for public folder
 app.use(express.static('public'));
 
+//to parses incoming request based on body-parser (ejs form) req.body
+app.use(express.urlencoded({extended: false}));
 
 //add a middleware for incoming request from routes
 app.use(authRoutes);
