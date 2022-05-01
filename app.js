@@ -2,6 +2,10 @@
 const express = require ('express');
 const path = require('path');
 const csrf = require('csurf');
+const expressSession = require('express-session');
+
+//import the config sessions
+const createSessionConfig = require('./config/session');
 
 //import the routes
 const authRoutes = require('./routes/auth.routes');
@@ -31,22 +35,24 @@ app.use(express.static('public'));
 //to parses incoming request based on body-parser (ejs form) req.body
 app.use(express.urlencoded({extended: false}));
 
-//add a middleware for incoming request from routes
-app.use(authRoutes);
-
+//express session on incoming request
+const sessionConfig = createSessionConfig();
+app.use(expressSession(sessionConfig));
 
 //security csrf token on incoming request
 app.use(csrf());
 
 //use the security csrf middleware on incoming request
-app.use(addCsrfTokenMiddleware)
+app.use(addCsrfTokenMiddleware);
+
+//add a middleware for incoming request from routes
+app.use(authRoutes);
 
 //error handling middleware for incoming request
 app.use(errorHandlerMiddleware);
 
 //listen to the port only if connection made to the database.
 db.connectToDatabase().then(function(){
-
     //listen to the port
     app.listen(3000);
 }).catch(function(error){

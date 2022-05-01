@@ -2,7 +2,7 @@
 function addCsrfToken(req,res,next){
 
     //set variable that available to all views ejs
-    res.locals.addCsrfToken = req.csrfToken();
+    res.locals.csrfToken = req.csrfToken();
 
     //able to reach next middlewares or routes
     next();
