@@ -21,6 +21,15 @@ class User {
 
     }
 
+    //looking for new user login data authentication
+    getUserWithSameEmail(){
+        //querrying email for the particular user in the database
+        return db.getDb().collection('users').findOne({ email:this.email });
+    }
+
+   
+
+    //parses the user signup data to the database 
     async signup() {
 
         // store password hashing logic
@@ -34,6 +43,14 @@ class User {
             name: this.name,
             address: this.address
         })
+
+    }
+
+
+    //checking for matching password of login
+    hasMatchingPassword(hashedPassword){
+        //use bcrypt to compare the hashed password with unhashed password
+        return bcrypt.compare(this.password, hashedPassword)
     }
 }
 

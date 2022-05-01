@@ -16,5 +16,9 @@ router.post('/signup',authController.signup)
 //get login router
 router.get('/login', authController.getLogin)
 
+//post login router
+router.post('/login', authController.login)
+
+
 //export the router available global
 module.exports = router;
