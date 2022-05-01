@@ -72,6 +72,14 @@ async function login(req,res){
         res.redirect('/');
     });
 
+
+}
+
+
+//logout functionalities
+function logout(req,res){
+    authUtil.destroyUserAuthSession(req)
+    res.redirect('/login');
 }
 
 
@@ -81,5 +89,6 @@ module.exports = {
     getSignup: getSignup,
     getLogin: getLogin,
     signup:signup,
-    login:login
+    login:login,
+    logout:logout
 }
