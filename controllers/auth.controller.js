@@ -1,8 +1,9 @@
 //import the user.model
 const User = require('../models/user.model');
 
-//import the authUtil
+//import the Util
 const authUtil = require('../util/authentication');
+const validation = require('../util/validation');
 
 //function to run for signup route in auth.routes.js to render ejs
 function getSignup(req,res){
@@ -13,6 +14,20 @@ function getSignup(req,res){
 //function to execute when user signup 
 async function signup(req,res,next){
 
+    //check the entered credentials
+    if(!validation.userDetailsAreValid(
+        req.body.email, 
+        req.body.password, 
+        req.body.fullname,
+        req.body.street, 
+        req.body.postal, 
+        req.body.city
+        ) || !validation.emailIsConfirmed(req.body.email,req.body['confirm-email'])
+    ){
+        res.redirect('/signup');
+        return;
+    }
+
     //initalize the user model and pass the argument
     const user = new User(
         req.body.email, 
@@ -22,10 +37,19 @@ async function signup(req,res,next){
         req.body.postal, 
         req.body.city
     );
-
+    
 
     //call the signup on user object
     try {
+         //check the user exist already
+        const existAlready = await user.existAlready();
+        console.log(existAlready);
+
+        if(existAlready){
+            res.redirect('/signup')
+            return;
+        }
+
         await user.signup();
     } catch(error) {
         next(error); //error handling middleware will be activated
@@ -88,13 +112,11 @@ async function login(req,res,next){
 
 }
 
-
 //logout functionalities
 function logout(req,res){
     authUtil.destroyUserAuthSession(req)
     res.redirect('/login');
 }
-
 
 
 //export object 

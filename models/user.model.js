@@ -27,7 +27,14 @@ class User {
         return db.getDb().collection('users').findOne({ email:this.email });
     }
 
-   
+    //check whether email data already exist in database
+    async existAlready(){
+        const existingUser =  await this.getUserWithSameEmail();
+        if(existingUser){
+            return true;
+        }
+        return false;
+    }
 
     //parses the user signup data to the database 
     async signup() {

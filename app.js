@@ -46,11 +46,13 @@ app.use(expressSession(sessionConfig));
 //security csrf token on incoming request
 app.use(csrf());
 
+
 //use the security csrf middleware on incoming request
 app.use(addCsrfTokenMiddleware);
 
 //use the checkAuth status Middleware on incoming request
 app.use(checkAuthStatusMiddleware);
+
 
 //add a middleware for incoming request from routes
 app.use(baseRoutes);
