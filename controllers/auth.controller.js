@@ -1,18 +1,50 @@
 //import the user.model
 const User = require('../models/user.model');
 
+
 //import the Util
 const authUtil = require('../util/authentication');
 const validation = require('../util/validation');
+const sessionFlash = require('../util/session-flash');
+
 
 //function to run for signup route in auth.routes.js to render ejs
 function getSignup(req,res){
+    
+    //get the session data that posted
+    let sessionData = sessionFlash.getSessionData(req);
+
+    //checking the session
+    if (!sessionData){
+        //default data
+        sessionData = {
+            email: '',
+            confirmEmail: '',
+            password: '',
+            fullname: '',
+            street: '',
+            postal: '',
+            city: '',
+        };
+    }
+
     //render the signup file
-    res.render('customer/auth/signup');
+    res.render('customer/auth/signup', {inputData: sessionData});
 }
 
 //function to execute when user signup 
 async function signup(req,res,next){
+
+    //store entered Data object
+    const enteredData = {
+        email: req.body.email,
+        confirmEmail: req.body['confirm-email'],
+        password: req.body.password,
+        fullname: req.body.fullname,
+        street: req.body.street,
+        postal: req.body.postal,
+        city: req.body.city
+    };
 
     //check the entered credentials
     if(!validation.userDetailsAreValid(
@@ -24,9 +56,24 @@ async function signup(req,res,next){
         req.body.city
         ) || !validation.emailIsConfirmed(req.body.email,req.body['confirm-email'])
     ){
-        res.redirect('/signup');
+        //session flash error 
+        sessionFlash.flashDataToSession(
+            req,
+            {
+            errorMessage: 
+            'Please check your email input.Password must be atleast 6 character long and postal code must be 5 characters long',
+            //Show entered Data
+            ...enteredData,
+        
+            },
+            function(){
+                res.redirect('/signup')
+        })
+
         return;
     }
+
+
 
     //initalize the user model and pass the argument
     const user = new User(
@@ -43,14 +90,22 @@ async function signup(req,res,next){
     try {
          //check the user exist already
         const existAlready = await user.existAlready();
-        console.log(existAlready);
 
-        if(existAlready){
-            res.redirect('/signup')
+        if(existAlready)
+        {   
+            //flash error data
+            sessionFlash.flashDataToSession(req,{
+                errorMessage: 'User Exist already! Try Log In again',
+                ...enteredData,
+            }, function(){
+                res.redirect('/signup')
+            })
+      
             return;
         }
 
         await user.signup();
+
     } catch(error) {
         next(error); //error handling middleware will be activated
         return;
@@ -63,9 +118,23 @@ async function signup(req,res,next){
 //function to run for login route in auth.routes.js
 function getLogin(req,res){
 
+    //get the session data
+    let sessionData = sessionFlash.getSessionData(req);
+
+    //check the session
+    if (!sessionData){
+        //default value
+        sessionData = {
+            email: '',
+            password: ''
+        };
+    }
+
+
    //render the login file
-   res.render('customer/auth/login');
+   res.render('customer/auth/login', {inputData: sessionData});
 }
+
 
 //function to execute when user login
 async function login(req,res,next){
@@ -84,10 +153,20 @@ async function login(req,res,next){
         return;
     }
    
+    //session error message
+    const sessionErrorData = {
+        errorMessage:  'Invalid credentials - please double-check your email and password',
+        email: user.email,
+        password: user.password
+    };
 
     //check whether new user in the database or not
     if (!existingUser){
-        res.redirect('/login');
+        //flashing error message
+        sessionFlash.flashDataToSession(req,sessionErrorData , function(){
+            res.redirect('/login');
+        })
+
         return;
     }
 
@@ -97,9 +176,16 @@ async function login(req,res,next){
 
     //checking the password 
     if (!passwordIsCorrect){
-        res.redirect('/login');
-        return;
+
+        //flashing error data
+        sessionFlash.flashDataToSession(req,sessionErrorData , function(){
+            res.redirect('/login');
+        })
+        return
+
     }
+
+  
 
     //----if come pass until this code, this means, the password and email is correct----//
 

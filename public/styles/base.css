@@ -70,3 +70,20 @@ a {
 .btn:active {
     background-color: var(--color-gold-200);
 }
+
+.alert {
+    border-radius: var(--border-radius-small);
+    background-color: var(--color-error-500);
+    color: var(--color-milkwhite-500);
+    padding: var(--space-4);
+}
+
+.alert h2 {
+    font-size: 1rem;
+    margin: var(--space-2) 0;
+    text-transform: uppercase;
+}
+
+.alert p {
+    margin: var(--space-2) 0;
+}
