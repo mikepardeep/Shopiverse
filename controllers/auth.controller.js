@@ -11,7 +11,7 @@ function getSignup(req,res){
 }
 
 //function to execute when user signup 
-async function signup(req,res){
+async function signup(req,res,next){
 
     //initalize the user model and pass the argument
     const user = new User(
@@ -25,7 +25,12 @@ async function signup(req,res){
 
 
     //call the signup on user object
-    await user.signup();
+    try {
+        await user.signup();
+    } catch(error) {
+        next(error); //error handling middleware will be activated
+        return;
+    }
 
     //redirect the user to login page once registed
     res.redirect('/login');
@@ -39,14 +44,22 @@ function getLogin(req,res){
 }
 
 //function to execute when user login
-async function login(req,res){
+async function login(req,res,next){
 
     //parses the user data for login
     const user= new User(req.body.email, req.body.password);
 
+    //define existing variable to be available globally
+    let existingUser;
 
     //get existing user data and store it
-    const existingUser = await user.getUserWithSameEmail();
+    try {
+        existingUser = await user.getUserWithSameEmail();
+    } catch(error) {
+        next(error);
+        return;
+    }
+   
 
     //check whether new user in the database or not
     if (!existingUser){
