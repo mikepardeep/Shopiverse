@@ -1,3 +1,6 @@
+//Create an users specification 
+
+
 
 //import password hashing (bcrypt)
 const bcrypt = require('bcryptjs');
@@ -9,6 +12,8 @@ const db = require('../data/database');
 
 //create user class to store user data and logics
 class User {
+
+    //store all the users data
     constructor(email,password,fullname, street,postal, city){
         this.email = email;
         this.password = password;
@@ -21,7 +26,7 @@ class User {
 
     }
 
-    //looking for new user login data authentication
+    //get the user data with email in database
     getUserWithSameEmail(){
         //querrying email for the particular user in the database
         return db.getDb().collection('users').findOne({ email:this.email });
@@ -43,7 +48,7 @@ class User {
         const hashedPassword = await bcrypt.hash(this.password, 12)
 
 
-        //create a user collection and insert to database
+        //insert users data to database
         await db.getDb().collection('users').insertOne({
             email: this.email,
             password: hashedPassword,

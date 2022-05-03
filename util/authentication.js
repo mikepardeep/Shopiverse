@@ -5,6 +5,9 @@ function createUserSession(req,user,action){
     //store a data to the session in database to indicates user
     req.session.uid = user._id.toString();
 
+    //store the admin session from isAdmin
+    req.session.isAdmin = user.isAdmin;
+
     //save the session
     req.session.save(action);
 }
