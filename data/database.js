@@ -1,3 +1,6 @@
+//This file is to config mongodb database 
+
+
 //import the mongodb package
 const mongodb = require('mongodb');
 

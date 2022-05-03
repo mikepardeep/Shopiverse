@@ -1,20 +1,21 @@
 <!--only the header section of the website that contain logo-->
 
 
-<header>
-    <div><a href="/">Shopiverse</a></div>
+<header id="main-header">
+    <div id="logo"><a href="/">Shopiverse</a></div>
     <nav>
-        <ul>
-            <!-- only if user authenticated -->
-            <% if (locals.isAuth) { %>
-                <li>
-                    <form action="/logout" method="POST">
-                        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
-                        <button>Logout</button>
-                    </form>
-                </li>
-            <% } %>
-            <!-- only if user authenticated -->
-        </ul>
+       <%- include('nav-items') %>
     </nav>
+    <!-- for toggling mobile menu -->
+    <button id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 </header>
+<aside id="mobile-menu">
+    <nav>
+        <%- include('nav-items') %>
+    </nav>
+</aside>
+ <!-- for toggling mobile menu -->

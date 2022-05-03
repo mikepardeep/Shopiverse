@@ -1,3 +1,6 @@
+//This file is to create a session and store it in mongodb database
+
+
 //import the expressSession
 const expressSession = require('express-session');
 

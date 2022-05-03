@@ -1,3 +1,7 @@
+//File to generate csrf token security for the website
+
+
+
 //create function to add csrf token
 function addCsrfToken(req,res,next){
 
