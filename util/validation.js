@@ -1,4 +1,4 @@
-// customize validation for user input details
+// file for customize validation for user input details
 
 
 //micro function for empty blank field of input

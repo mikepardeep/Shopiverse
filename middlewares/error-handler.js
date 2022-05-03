@@ -1,3 +1,6 @@
+//file to generate error handling page and logicality
+
+
 //create a handle error function
 
 function handleErrors(error,req,res,next){

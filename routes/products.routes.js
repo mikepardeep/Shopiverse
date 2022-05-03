@@ -1,3 +1,6 @@
+//file to create route for products 
+
+
 //require the express package
 const express = require('express');
 

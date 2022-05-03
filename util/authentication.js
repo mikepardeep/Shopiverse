@@ -1,3 +1,4 @@
+//File to create and destroy user session
 
 //create a user session
 function createUserSession(req,user,action){

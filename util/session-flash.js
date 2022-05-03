@@ -1,4 +1,4 @@
-//flashing error message
+//File to generate flash error by sending and retrieving data to and fro session
 
 
 //retrieving the flash data

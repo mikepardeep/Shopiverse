@@ -1,3 +1,8 @@
+//This file is to control user authentication 
+
+
+
+
 //import the user.model
 const User = require('../models/user.model');
 
@@ -31,6 +36,7 @@ function getSignup(req,res){
     //render the signup file
     res.render('customer/auth/signup', {inputData: sessionData});
 }
+
 
 //function to execute when user signup 
 async function signup(req,res,next){

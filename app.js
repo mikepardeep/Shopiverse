@@ -1,3 +1,6 @@
+//File for website main functionalities
+
+
 //import package 
 const express = require ('express');
 const path = require('path');
@@ -5,15 +8,16 @@ const csrf = require('csurf');
 const expressSession = require('express-session');
 
 
-//import the config sessions
+//import the files location
+    //import the config sessions
 const createSessionConfig = require('./config/session');
-//import the database 
+    //import the database 
 const db = require('./data/database')
-//import the csrf middlewares
+    //import the csrf middlewares
 const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
-//import error handling middleware
+    //import error handling middleware
 const errorHandlerMiddleware = require('./middlewares/error-handler');
-//import check auth status middlewares
+    //import check auth status middlewares
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 
 
@@ -45,7 +49,6 @@ app.use(expressSession(sessionConfig));
 
 //security csrf token on incoming request
 app.use(csrf());
-
 
 //use the security csrf middleware on incoming request
 app.use(addCsrfTokenMiddleware);

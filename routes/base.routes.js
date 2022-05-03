@@ -1,4 +1,4 @@
-//website base(root) routes 
+//file to create route for base 
 
 //require the express package
 const express = require('express');
