@@ -11,9 +11,11 @@ html {
     --color-gray-500: rgb(37,34,31);
     --color-milkwhite-500: rgb(237, 237, 237);
     --color-turqoise-500: rgb(58, 72, 85);
-    --color-royalblue-100: rgb(25, 34, 67);
+    --color-royalblue-100: rgb(3, 39, 71);
     --color-gold-200: rgb(224, 134, 0);
+    --color-lightblue-100: rgb(181, 243, 240);
     --color-error-500: rgb(199,51,15);
+    --color-lightgreen-100: rgb(130, 194, 10);
     
     /* add spacing as variable and using it later */
     --space-1: 0.25rem;
@@ -25,6 +27,7 @@ html {
     /* add border radius as variable and using it later */
     --border-radius-small: 4px;
     --border-radius-medium: 6px;
+    --border-radius-large: 8px;
 
     /* add shadow medium as variable and using it later */
     --shadow-medium: 0 2px 8px rgba(0,0,0,0.2);
