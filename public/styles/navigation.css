@@ -1,4 +1,13 @@
+main {
+    margin-top:6rem;
+}
+
+
+
 #main-header{
+    position: fixed;
+    top:0;
+    left:0;
     width: 100%;
     max-width: 60rem;
     height: 5rem;
@@ -17,10 +26,44 @@
     font-size: 2rem;
 }
 
+#main-header nav {
+    display:none;
+}
+
+
 .nav-items {
+    height:100%;
     display:flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     color:var(--color-gold-200)
+
+}
+
+.nav-items li {
+    margin: 0 var(--space-2);
+}
+
+.nav-items button {
+    cursor: pointer;
+    font: inherit;
+    border: 1px solid var(--color-gold-200);
+    border-radius: var(--border-radius-small);
+    background-color: transparent;
+    color: var(--color-gold-200);
+    padding: var(--space-2) var(--space-4);
+
+}
+
+.nav-items button {
+    cursor: pointer;
+    font: inherit;
+    border: 1px solid var(--color-gold-200);
+    border-radius: var(--border-radius-small);
+    background-color: transparent;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-gold-200);
 
 }
 
@@ -36,12 +79,82 @@
     padding: 0;
 }
 
-.nav-items li {
-    margin: 0 var(--space-4);
-}
 
 #mobile-menu-btn span {
     width: 2.25rem;
     height: 0.2rem;
     background-color: var(--color-gold-200);
+}
+
+#mobile-menu {
+    position: fixed;
+    top:5rem;
+    left:0;
+    height: calc(100vh-5rem);
+    width:100%;
+    background-color: var(--color-royalblue-100);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mobile-menu.open {
+    display:flex;
+}
+
+#mobile-menu nav {
+    height: 20rem;
+    width: 90%;
+    margin:var(--space-4) auto;
+}
+
+#mobile-menu .nav-items a,
+#mobile-menu .nav-items button {
+    font-size: 1.75rem;
+    color: var(--color-milkwhite-500);
+}
+
+
+
+@media (min-width: 48rem){
+    main {
+        margin-top:0;
+    }
+
+    #main-header {
+        position: static;
+    }
+
+    #main-header nav {
+        display:block;
+    }
+
+    #mobile-menu-btn{
+        display:none;
+    }
+
+    #mobile-menu {
+        display: none;
+    }
+
+    
+    .nav-items button {
+        color: var(--color-gold-200);
+        border-color: var(--color-turqoise-500)
+    }
+
+    .nav-items{
+        display:flex;
+        flex-direction: row;
+    }
+
+    .nav-items a {
+        padding:var(--space-2) var(--space-4);
+        border-radius: var(--border-radius-small);
+    }
+
+    .nav-items a:hover,
+    .nav-items a:active {
+        background-color: var(--color-milkwhite-500);
+    }
 }

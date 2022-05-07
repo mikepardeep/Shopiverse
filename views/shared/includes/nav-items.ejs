@@ -1,8 +1,8 @@
 <ul class="nav-items">
     <!-- view for all public even without registration -->
     <% if (!locals.isAdmin) { %>
-        <li><a href="/"></a>Shop</li>
-        <li><a href="/cart"></a>Cart</li>
+        <li><a href="/">Shop</a></li>
+        <li><a href="/cart">Cart</a></li>
     <% } %>
     <!-- view for all public even without registration -->
 
@@ -24,7 +24,6 @@
 
     <!-- only if user is Admin -->
     <% if (locals.isAdmin) { %>
-        <h1>You are logged-in as Admin</h1>
         <li><a href="/admin/products">Manage Products</a></li>
         <li><a href="/admin/orders">Manage Orders</a></li>
         

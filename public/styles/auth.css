@@ -11,7 +11,7 @@ form {
     margin:var(--space-8) auto;
     padding: var(--space-4);
     background-color: var(--color-gray-500);
-    border-radius: var(--border-radius-medium);
+    border-radius: var(--border-radius-large);
     text-align: center;
 }
 
