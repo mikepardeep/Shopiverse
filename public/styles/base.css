@@ -63,15 +63,26 @@ a {
     cursor: pointer;
     font:inherit;
     padding: var(--space-2) var(--space-6);
-    color: var(--color-gray-500);
-    border: 1px solid var(--color-gray-500);
+    color: var(--color-milkwhite-500);
+    border: 1px solid var(--color-milkwhite-500);
     border-radius:var(--border-radius-small);
+    background-color: var(----color-royalblue-100);
 
 }
 
 .btn:hover,
 .btn:active {
     background-color: var(--color-gold-200);
+}
+
+.btn-alt{
+    background-color: transparent;
+
+}
+
+.btn-alt:hover,
+.btn-alt:active{
+    background-color:var(--color-gray-500);
 }
 
 .alert {
