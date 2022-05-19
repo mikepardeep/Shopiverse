@@ -1,3 +1,5 @@
+//import the Product Model
+const Product = require('../models/product.model')
 
 //get the admin get product
 function getProducts(req,res){
@@ -11,8 +13,25 @@ function getNewProducts(req, res){
 
 
 //submitting a new product
-function createNewProduct(){
+async function createNewProduct(req,res, next){
+   
+   const product = new Product({
+       ...req.body, 
+       image: req.file.filename
+   });
+   console.log(product);
 
+   console.log(product.save());
+   
+   try {
+        await product.save();
+   } catch(error) {
+        next(error);
+        return;
+   }
+
+   res.redirect('/admin/products');
+   
 }
 
 
