@@ -21,6 +21,7 @@ function getSignup(req,res){
 
     //checking the session
     if (!sessionData){
+        
         //default data
         sessionData = {
             email: '',

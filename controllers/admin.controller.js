@@ -2,8 +2,16 @@
 const Product = require('../models/product.model')
 
 //get the admin get product
-function getProducts(req,res){
-    res.render('admin/products/all-products');
+async function getProducts(req,res, next){
+    try {
+        const products = await Product.findAll();
+        res.render('admin/products/all-products', {products:products});
+
+    } catch(error) {
+        next(error);
+        return;
+    }
+   
 }
 
 //get the admin new product
@@ -19,18 +27,17 @@ async function createNewProduct(req,res, next){
        ...req.body, 
        image: req.file.filename
    });
-   console.log(product);
 
-   console.log(product.save());
-   
+
    try {
         await product.save();
+        res.redirect('/admin/products');
    } catch(error) {
         next(error);
         return;
    }
 
-   res.redirect('/admin/products');
+ 
    
 }
 

@@ -36,9 +36,9 @@ app.set('view engine', 'ejs');
     //location of the views folder
 app.set("views", path.join(__dirname, 'views'));
 
-
-//static file for public folder
+//static file for public and product-data folder
 app.use(express.static('public'));
+app.use('/products/assets' , express.static('product-data'));
 
 //to parses incoming request based on body-parser (ejs form) req.body
 app.use(express.urlencoded({extended: false}));
