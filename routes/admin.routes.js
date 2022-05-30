@@ -13,6 +13,7 @@ const imageUploadMiddlewares = require('../middlewares/image-upload');
 //setting up the router
 const router = express.Router();
 
+
 //create a get route for admin/products (set the /admin at app.js)
 router.get('/products', adminController.getProducts);
 
@@ -23,6 +24,14 @@ router.get('/products/new', adminController.getNewProducts);
 
 //Create a post route for imageupload
 router.post('/products',imageUploadMiddlewares, adminController.createNewProduct) 
+
+
+//Create a get route for dynamic product item
+router.get('/products/:id', adminController.getUpdateProduct)
+
+
+//Create a post route for dynamic product item
+router.post('/products/:id', imageUploadMiddlewares, adminController.updateProduct)
 
 
 module.exports = router;

@@ -2,7 +2,7 @@
 
 <!-- include the head -->
 <%- include('../../shared/includes/head' ,{ pageTitle: 'All Product'}) %>
-
+<link rel="stylesheet" href="/styles/products.css">
 </head>
 <body>
     <!-- include the header -->
@@ -16,7 +16,7 @@
             </p>
         </section>
         <section>
-            <ul>
+            <ul id="product-grid">
                 <% for (const product of products) { %>
                     <li>
                       <%- include('../../shared/includes/product-item', { product: product }) %>

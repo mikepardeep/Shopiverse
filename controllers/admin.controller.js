@@ -37,13 +37,51 @@ async function createNewProduct(req,res, next){
         return;
    }
 
- 
-   
+
+}
+
+async function getUpdateProduct(req,res,next) {
+
+    try {
+        const product = await Product.findById(req.params.id);
+        res.render('admin/products/update-product', { product: product })
+    } catch (erorr){
+        next(error);
+    }
+}
+
+async function updateProduct(req,res, next){
+
+    //create a new Product object
+    const product = new Product({
+        ...req.body,
+        _id : req.params.id
+    });
+
+    //checking whether the file exist
+    if(req.file){
+        //replace the old image with the new one
+        product.replaceImage(req.file.filename);
+    }
+
+    //save the product
+    try {
+        await product.save();
+    } catch(error) {
+        next(error);
+        return;
+    }
+    
+    //redirect
+    res.redirect('/admin/products');
 }
 
 
 module.exports = {
     getProducts: getProducts,
     getNewProducts: getNewProducts,
-    createNewProduct: createNewProduct
+    createNewProduct: createNewProduct,
+    getUpdateProduct: getUpdateProduct,
+    updateProduct: updateProduct
+
 }
