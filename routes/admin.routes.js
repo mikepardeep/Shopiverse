@@ -33,5 +33,8 @@ router.get('/products/:id', adminController.getUpdateProduct)
 //Create a post route for dynamic product item
 router.post('/products/:id', imageUploadMiddlewares, adminController.updateProduct)
 
+//Create a post route for delte method
+router.delete('/products/:id', adminController.deleteProduct);
+
 
 module.exports = router;

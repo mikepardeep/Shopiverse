@@ -62,6 +62,7 @@ class Product {
         this.imageUrl = `/products/assets/images/${this.image}`;
     }
 
+    //method to save the product.
     async save(){
         const productData = {
 
@@ -104,6 +105,12 @@ class Product {
     async replaceImage(newImage) {
         this.image = newImage;
         this.updateImageData();
+    }
+
+    //method to delete the product
+    remove() {
+        const productId = new mongodb.ObjectId(this.id);
+        return db.getDb().collection('products').deleteOne({_id: productId});
     }
 }
 
