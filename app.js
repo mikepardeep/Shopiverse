@@ -19,6 +19,8 @@ const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
     //import check auth status middlewares
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
+//import cart middleware
+const cartMiddleware = require('./middlewares/cart');
 
 
 //import the routes
@@ -27,6 +29,8 @@ const productRoutes = require('./routes/products.routes');
 const baseRoutes = require('./routes/base.routes');
 const adminRoutes = require('./routes/admin.routes');
 const protectRoutesMiddleware = require('./middlewares/protect-routes');
+const cartRoutes = require('./routes/cart.routes');
+
 
 //initalize the express
 const app = express();
@@ -44,6 +48,9 @@ app.use('/products/assets' , express.static('product-data'));
 //to parses incoming request based on body-parser (ejs form) req.body
 app.use(express.urlencoded({extended: false}));
 
+//incoming request for json data
+app.use(express.json());
+
 //express session on incoming request
 const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
@@ -51,17 +58,25 @@ app.use(expressSession(sessionConfig));
 //security csrf token on incoming request
 app.use(csrf());
 
+
 //use the security csrf middleware on incoming request
 app.use(addCsrfTokenMiddleware);
 
 //use the checkAuth status Middleware on incoming request
 app.use(checkAuthStatusMiddleware);
 
+//cart middleware on incoming request
+app.use(cartMiddleware);
+
+
 
 //add a middleware for incoming request from routes
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productRoutes);
+
+//set the prefix for cart routes.
+app.use('/cart',cartRoutes)
 
 //run protect route middleware
 app.use(protectRoutesMiddleware);
