@@ -1,0 +1,23 @@
+<!-- add the head section and the dynamic title to populate for signup -->
+
+<!-- include the head -->
+<%- include('includes/head' ,{ pageTitle: 'An Error Occurred'}) %>
+
+<!-- include the specific css file form.css and auth.css -->
+    <link rel="stylesheet" href="/styles/forms.css">
+    <link rel="stylesheet" href="/styles/auth.css">
+
+</head>
+<body>
+    <!-- include the header -->
+    <%- include('includes/header')%>
+    <main>
+        <h1>Could not find resource</h1>
+        <p>Please try again later</p>
+        <a class="btn" href="/">Back to safety</a>
+        
+    </main>
+
+
+<!--Include the footer -->
+<%- include('includes/footer')%>
