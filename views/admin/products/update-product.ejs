@@ -1,23 +1,17 @@
 <!-- add the head section and the dynamic title to populate for signup -->
 
 <!-- include the head -->
-<%- include('../../shared/includes/head' ,{ pageTitle: 'All new product'}) %>
+<%- include('../../shared/includes/head' ,{ pageTitle: 'Update product'}) %>
 <link rel="stylesheet" href="/styles/forms.css">
 <script src="/scripts/image-preview.js" defer></script>
+
 </head>
 <body>
     <!-- include the header -->
     <%- include('../../shared/includes/header')%>
     <main>
-        <h1>Add new Product</h1>
-        <%- include('../../shared/includes/product-form', { submitPath: '/admin/products' , product: {
-            title: '',
-            summary: '',
-            price: '',
-            description: ''
-        },
-        imageRequired:true }) %>
-
+        <h1>Update Product</h1>
+        <%- include('../../shared/includes/product-form', { submitPath: '/admin/products/' + product.id , product:product, imageRequired: false}) %>
     </main>
 
 

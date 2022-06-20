@@ -26,6 +26,7 @@ const authRoutes = require('./routes/auth.routes');
 const productRoutes = require('./routes/products.routes');
 const baseRoutes = require('./routes/base.routes');
 const adminRoutes = require('./routes/admin.routes');
+const protectRoutesMiddleware = require('./middlewares/protect-routes');
 
 //initalize the express
 const app = express();
@@ -36,9 +37,9 @@ app.set('view engine', 'ejs');
     //location of the views folder
 app.set("views", path.join(__dirname, 'views'));
 
-
-//static file for public folder
+//static file for public and product-data folder
 app.use(express.static('public'));
+app.use('/products/assets' , express.static('product-data'));
 
 //to parses incoming request based on body-parser (ejs form) req.body
 app.use(express.urlencoded({extended: false}));
@@ -61,6 +62,9 @@ app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productRoutes);
+
+//run protect route middleware
+app.use(protectRoutesMiddleware);
 app.use('/admin',adminRoutes);
 
 
