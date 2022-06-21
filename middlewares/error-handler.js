@@ -3,7 +3,7 @@
 //create a handle error function
 function handleErrors(error,req,res,next){
     //render 404 error page
-    if (error.code == 404) {
+    if (error.code === 404) {
         return res.status(404).render('shared/404');
     }
 
