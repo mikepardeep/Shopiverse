@@ -41,7 +41,7 @@ async function addToCart(){
     //get the new total quantity
     const newTotalQuantity = responseData.newTotalItems;
 
-    console.log(newTotalQuantity);
+
 
     //update the element with the new quantity.
     cardBadgeElement.textContent = newTotalQuantity

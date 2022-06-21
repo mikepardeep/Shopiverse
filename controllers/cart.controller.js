@@ -32,12 +32,38 @@ async function addCartItem(req,res, next) {
         newTotalItems : cart.totalQuantity
     });
 
-    return;
+}
+
+//updateCartItem function
+function updateCartItem(req,res){
+    const cart = res.locals.cart;
+
+    console.log(cart);
+
+    //run update cart item function in cart variable.
+    const updatedItemData = cart.updateItem(
+        req.body.productId, 
+        req.body.quantity
+    );
+
+    //add to the session
+    req.session.cart = cart;
+
+    //send the json request
+    res.json({
+        message: 'Item Updated!',
+        updatedCartData : {
+            newTotalQuantity: cart.totalQuantity,
+            newTotalPrice: cart.totalPrice,
+            updatedItemPrice: updatedItemData.updatedItemPrice,
+        },
+    })
 }
 
 
 //export the module
 module.exports = {
     addCartItem: addCartItem,
-    getCart: getCart
+    getCart: getCart,
+    updateCartItem: updateCartItem
 };
