@@ -30,6 +30,7 @@ const baseRoutes = require('./routes/base.routes');
 const adminRoutes = require('./routes/admin.routes');
 const protectRoutesMiddleware = require('./middlewares/protect-routes');
 const cartRoutes = require('./routes/cart.routes');
+const orderRoutes = require('./routes/orders.routes');
 
 
 //initalize the express
@@ -80,6 +81,7 @@ app.use('/cart',cartRoutes)
 
 //run protect route middleware
 app.use(protectRoutesMiddleware);
+app.use('/orders', orderRoutes);
 app.use('/admin',adminRoutes);
 
 

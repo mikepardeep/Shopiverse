@@ -24,7 +24,7 @@ class Cart {
 
             //check the item
             if (item.product.id === product.id) {
-                cartItem.quantity = item.quantity + 1;
+                cartItem.quantity = +item.quantity + 1;
                 cartItem.totalPrice = item.totalPrice + product.price;
                 this.items[i] = cartItem;
 
@@ -60,12 +60,13 @@ class Cart {
                 this.totalPrice += quantityChange * item.product.price
 
                 return { updatedItemPrice: cartItem.totalPrice};
+
             } else if (item.product.id === productId && newQuantity <=0){
                 //number of items to remove
                 this.items.splice(i, 1);
                 this.totalQuantity = this.totalQuantity - item.quantity;
                 this.totalPrice -= item.totalPrice;
-                return { updatedItemPrice: 0};
+                return { updatedItemPrice: 0 };
             }
         }
 
