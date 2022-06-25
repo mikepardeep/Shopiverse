@@ -2,22 +2,21 @@
 
 //import oder models
 const Order = require('../models/order.model')
-
 //import user models
 const User = require('../models/user.model')
 
 //get Order
-async function getOrders(req,res){
+async function getOrders(req, res, next) {
     try {
-        const orders = await Order.findAllForUser(res.locals.uid);
-        res.render('customer/orders/all-orders' ,{
-            orders: orders
-        });
-    } catch(error) {
-        next(error);
+      const orders = await Order.findAllForUser(res.locals.uid);
+
+      res.render('customer/orders/all-orders', {
+        orders: orders,
+      });
+    } catch (error) {
+      next(error);
     }
-  
-}
+  }
 
 //add order function
 async function addOrder(req,res, next) {
@@ -30,7 +29,8 @@ async function addOrder(req,res, next) {
     try {
         userDocument = await User.findById(res.locals.uid)
     } catch(error){
-        return next(error);
+        next(error);
+        return;
     }
 
     const order = new Order(cart, userDocument);
@@ -54,5 +54,5 @@ async function addOrder(req,res, next) {
 
 module.exports = {
     addOrder:addOrder,
-    getOrders:getOrders
+    getOrders:getOrders,
 }

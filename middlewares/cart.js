@@ -18,9 +18,8 @@ function initalizeCart(req,res,next){
         cart = new Cart(
             sessionCart.items,
             sessionCart.totalQuantity,
-            sessionCart.totalPrice
-            
-        )
+            sessionCart.totalPrice  
+        );
     }
 
     res.locals.cart = cart;

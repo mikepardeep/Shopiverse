@@ -9,11 +9,12 @@ const ordersController = require('../controllers/orders.controller');
 //setting up the router
 const router = express.Router();
 
+
 //post route
 router.post('/', ordersController.addOrder);
 
 //get route
-router.get('/', ordersController.getOrders);
+router.get('/', ordersController.getOrders); // /orders
 
 //export the router available global
 module.exports = router;
