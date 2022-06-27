@@ -24,7 +24,8 @@ const cartMiddleware = require('./middlewares/cart');
 //import updatePrice middleware
 const updateCartPriceMiddleware = require('./middlewares/update-cart-prices');
 
-
+//import not found middleware
+const notFoundMiddleware = require('./middlewares/not-found')
 
 //import the routes
 const authRoutes = require('./routes/auth.routes');
@@ -84,9 +85,11 @@ app.use(productRoutes);
 app.use('/cart',cartRoutes)
 
 //run protect route middleware
-app.use(protectRoutesMiddleware);
-app.use('/orders', orderRoutes);
-app.use('/admin',adminRoutes);
+app.use('/orders', protectRoutesMiddleware, orderRoutes);
+app.use('/admin', protectRoutesMiddleware, adminRoutes);
+
+//not found
+app.use(notFoundMiddleware);
 
 
 //error handling middleware for incoming request

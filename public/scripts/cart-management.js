@@ -2,7 +2,7 @@
 const addCartButtonElement = document.querySelector('#product-details button');
 
 //target cart badge element
-const cardBadgeElement = document.querySelector('.nav-items .badge');
+const cardBadgeElements = document.querySelectorAll('.nav-items .badge');
 
 
 //function to add to cart
@@ -44,7 +44,10 @@ async function addToCart(){
 
 
     //update the element with the new quantity.
-    cardBadgeElement.textContent = newTotalQuantity
+    for (const cartBadgeElement of cartBadgeElements){
+        cardBadgeElement.textContent = newTotalQuantity
+
+    }
 
 
 }
