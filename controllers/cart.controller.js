@@ -43,7 +43,7 @@ function updateCartItem(req,res){
     //run update cart item function in cart variable.
     const updatedItemData = cart.updateItem(
         req.body.productId, 
-        req.body.quantity
+        +req.body.quantity
     );
 
     //add to the session

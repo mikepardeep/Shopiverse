@@ -21,6 +21,9 @@ const errorHandlerMiddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 //import cart middleware
 const cartMiddleware = require('./middlewares/cart');
+//import updatePrice middleware
+const updateCartPriceMiddleware = require('./middlewares/update-cart-prices');
+
 
 
 //import the routes
@@ -68,6 +71,7 @@ app.use(checkAuthStatusMiddleware);
 
 //cart middleware on incoming request
 app.use(cartMiddleware);
+app.use(updateCartPriceMiddleware);
 
 
 
