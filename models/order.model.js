@@ -20,7 +20,7 @@ class Order {
     this.id = orderId;
   }
 
-    //transform ordr documents
+    //transform order documents
     static transformOrderDocument(orderDoc) {
 
         //create order object
@@ -43,6 +43,7 @@ class Order {
 
     //find all function (admin)
     static async findAll() {
+        
         //order db
         const orders = await db
             .getDb()
@@ -51,7 +52,8 @@ class Order {
             .sort({ _id: -1 })
             .toArray();
 
-        return this.transformOrderDocument(orders);
+        return this.transformOrderDocuments(orders);
+
     }
 
     //findAllforusers (user)

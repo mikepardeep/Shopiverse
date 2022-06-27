@@ -36,5 +36,11 @@ router.post('/products/:id', imageUploadMiddlewares, adminController.updateProdu
 //Create a post route for delte method
 router.delete('/products/:id', adminController.deleteProduct);
 
+//admin get order rouders
+router.get('/orders', adminController.getOrders)
+
+//admin update orders
+router.patch('/orders/:id', adminController.updateOrder)
+
 
 module.exports = router;
