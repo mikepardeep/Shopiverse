@@ -1,9 +1,10 @@
 //Create an users specification 
 
-
-
 //import password hashing (bcrypt)
 const bcrypt = require('bcryptjs');
+
+//import mongodb
+const mongodb = require('mongodb')
 
 
 //import database
@@ -23,7 +24,14 @@ class User {
             postalCode: postal,
             city:city
         };
+    }
 
+    static findById(userId){
+        //mongodb userid
+        const uid = new mongodb.ObjectId(userId);
+
+        //get data from database (password excluded)
+        return db.getDb().collection('users').findOne({_id: uid}, { projection: { password: 0} } )
     }
 
     //get the user data with email in database

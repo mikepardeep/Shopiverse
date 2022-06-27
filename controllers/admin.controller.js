@@ -1,4 +1,5 @@
 //import the Product Model
+const Order = require('../models/order.model');
 const Product = require('../models/product.model')
 
 //get the admin get product
@@ -91,13 +92,46 @@ async function deleteProduct(req,res,next){
     
 }
 
+//function to get orders
+async function getOrders(req,res,next) {
+    try {
+        const orders = await Order.findAll();
+        res.render('admin/orders/admin-orders', {
+            orders: orders
+        });
+    } catch(error) {
+        next(error);
+    }
+}
+
+//function to update orders
+async function updateOrder(req,res,next) {
+    const orderId = req.params.id;
+    const newStatus = req.body.newStatus;
+
+    try {
+        const order = await Order.findById(orderId);
+
+        order.status = newStatus;
+
+        await order.save();
+
+        res.json({ message: 'Order updated', newStatus: newStatus})
+    } catch(error) {
+        next(error);
+    }
+}
+
 
 module.exports = {
+
     getProducts: getProducts,
     getNewProducts: getNewProducts,
     createNewProduct: createNewProduct,
     getUpdateProduct: getUpdateProduct,
     updateProduct: updateProduct,
-    deleteProduct: deleteProduct
+    deleteProduct: deleteProduct,
+    getOrders: getOrders,
+    updateOrder: updateOrder
 
 }

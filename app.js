@@ -21,6 +21,9 @@ const errorHandlerMiddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 //import cart middleware
 const cartMiddleware = require('./middlewares/cart');
+//import updatePrice middleware
+const updateCartPriceMiddleware = require('./middlewares/update-cart-prices');
+
 
 
 //import the routes
@@ -30,6 +33,7 @@ const baseRoutes = require('./routes/base.routes');
 const adminRoutes = require('./routes/admin.routes');
 const protectRoutesMiddleware = require('./middlewares/protect-routes');
 const cartRoutes = require('./routes/cart.routes');
+const orderRoutes = require('./routes/orders.routes');
 
 
 //initalize the express
@@ -67,6 +71,7 @@ app.use(checkAuthStatusMiddleware);
 
 //cart middleware on incoming request
 app.use(cartMiddleware);
+app.use(updateCartPriceMiddleware);
 
 
 
@@ -80,6 +85,7 @@ app.use('/cart',cartRoutes)
 
 //run protect route middleware
 app.use(protectRoutesMiddleware);
+app.use('/orders', orderRoutes);
 app.use('/admin',adminRoutes);
 
 
