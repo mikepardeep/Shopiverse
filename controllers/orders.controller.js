@@ -1,12 +1,14 @@
 //add order function
 
+//import stripe payment
+const stripe = require('stripe')('sk_test_51LFKQ6JTkEOTF98q75RbcLkU3TDSqBgi9nR0AeuDDkkNLf6lAKEgItxwBC0aqMCtpQAMeapP51wIIy4OyyttHoOC00zCEPoTCY');
+
+
 //import oder models
 const Order = require('../models/order.model')
 //import user models
 const User = require('../models/user.model')
 
-//import stripe payment
-const stripe = require('stripe')('sk_test_51LFKQ6JTkEOTF98q75RbcLkU3TDSqBgi9nR0AeuDDkkNLf6lAKEgItxwBC0aqMCtpQAMeapP51wIIy4OyyttHoOC00zCEPoTCY');
 
 
 //get Order
@@ -54,22 +56,22 @@ async function addOrder(req,res, next) {
 
     //create session for stripe checkout
     const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          price_data : {
-            currency: 'RM',
-            product_data: {
-              name: 'Dummy'
+      line_items: cart.items.map(function(item) {
+        return {
+            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+            price_data : {
+              currency: 'myr',
+              product_data: {
+                name: item.product.title
+              },
+              unit_amount: +item.product.price.toFixed(2) * 100
             },
-            unit_amount_decimal : 10.99
-          },
-          quantity: 1,
-        },
-      ],
+            quantity: item.quantity,
+        }
+      }),
       mode: 'payment',
-      success_url: `localhost:3000/orders/success`,
-      cancel_url: `localhost:3000/orders/cancel`,
+      success_url: `http://localhost:3000/orders/success`,
+      cancel_url: `http://localhost:3000/orders/failure`,
     });
   
     res.redirect(303, session.url);
