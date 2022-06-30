@@ -1,7 +1,7 @@
 .cart-item {
     display:flex;
     flex-direction: column;
-    background-color: var(--color-gray-500);
+    background-color: var(--color-gold-200);
     padding: var(--space-4);
     margin: var(--space-4) 0;
     border-radius: var(--border-radius-medium)
@@ -21,7 +21,7 @@
 
 .cart-product-price {
     font-style: italic;
-    color: var(--color-milkwhite-500)
+    color: var(--color-black-100)
 }
 
 #cart-total {

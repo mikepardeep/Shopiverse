@@ -11,12 +11,13 @@ form hr {
 label {
     color: var(--color-milkywhite-500);
     display:block;
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-4);
 }
 
 input, textarea {
     font:inherit;
     padding: var(--space-2);
+    margin-bottom: var(--space-2);
     border-radius: var(--border-radius-small);
     border:none;
     width: 90%;

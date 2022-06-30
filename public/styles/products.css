@@ -12,7 +12,7 @@
     border-radius : var(--border-radius-medium);
     text-align: center;
     width: 18rem;
-    background-color: var(--color-turqoise-500);
+    background-color: var(--color-royalblue-100);
     overflow:hidden;
 }
 
@@ -30,7 +30,13 @@
 .product-item-content h2 {
     font-size: 1.15rem;
     margin: var(--space-2) 0;
+    color: white;
 }
+
+.product-item-content p {
+    color: white;
+}
+
 
 .product-item-action {
     display:flex;
@@ -54,7 +60,7 @@
 #product-details header {
     margin-top: var(--space-8);
     padding: var(--space-8);
-    background-color: var(--color-turqoise-500);
+    background-color: white;
     gap: var(--space-8);
     display:flex;
     justify-content:center;
@@ -73,7 +79,7 @@
 }
 
 #product-description {
-    background-color: var(--color-turqoise-500);
+    background-color: white;
     padding: var(--space-8);
     white-space: pre-wrap;
     text-align:center

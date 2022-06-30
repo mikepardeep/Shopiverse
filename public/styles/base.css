@@ -13,6 +13,7 @@ html {
     --color-turqoise-500: rgb(58, 72, 85);
     --color-royalblue-100: rgb(3, 39, 71);
     --color-gold-200: rgb(224, 134, 0);
+    --color-black-100: rgb(0,0,0);
     --color-lightblue-100: rgb(181, 243, 240);
     --color-error-500: rgb(199,51,15);
     --color-lightgreen-100: rgb(130, 194, 10);
@@ -36,8 +37,8 @@ html {
 }
 
 body {
-    background-color: var(--color-royalblue-100);
-    color:var(--color-milkwhite-500);
+    background-color: var(--color-milkwhite-500);
+    color:var(--color-black-100);
     margin:0;
 }
 
@@ -66,9 +67,10 @@ a {
     font:inherit;
     padding: var(--space-2) var(--space-6);
     color: var(--color-milkwhite-500);
+    margin:var(--space-4);
     border: 1px solid var(--color-milkwhite-500);
     border-radius:var(--border-radius-small);
-    background-color: var(----color-royalblue-100);
+    background-color: var(--color-royalblue-100);
 
 }
 
@@ -78,7 +80,7 @@ a {
 }
 
 .btn-alt{
-    background-color: transparent;
+    background-color: --color-lightgreen-100;
 
 }
 

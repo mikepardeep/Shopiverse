@@ -1,8 +1,8 @@
 .order-item {
-    background-color: var(--color-gray-500);
+    background-color: var(--color-gold-200);
     border-radius: var(--border-radius-small);
     padding: var(--space-4);
-    margin: var(--space-4) 0;
+    margin: var(--space-8) 0;
   }
   
   .order-summary {
@@ -22,7 +22,7 @@
   }
   
   .order-item-price {
-    color: var(--color-gold-200);
+    color: var(--color-lightblue-100);
   }
   
   .order-item .status {

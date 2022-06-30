@@ -3,7 +3,6 @@
 //import stripe payment
 const stripe = require('stripe')('sk_test_51LFKQ6JTkEOTF98q75RbcLkU3TDSqBgi9nR0AeuDDkkNLf6lAKEgItxwBC0aqMCtpQAMeapP51wIIy4OyyttHoOC00zCEPoTCY');
 
-
 //import oder models
 const Order = require('../models/order.model')
 //import user models

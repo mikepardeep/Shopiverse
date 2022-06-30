@@ -116,10 +116,12 @@ async function updateOrder(req,res,next) {
 
         await order.save();
 
-        res.json({ message: 'Order updated', newStatus: newStatus})
+        res.json({ message: 'Order updated', newStatus: newStatus});
+
     } catch(error) {
         next(error);
     }
+
 }
 
 
